@@ -1,10 +1,12 @@
-<img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/2be5843d-016d-4e3b-b7f7-3b96cb71ed89" /># 🚦 Smart City Traffic & Mobility Analytics Platform
+Smart City Traffic & Mobility Analytics Platform
+
+<img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/2be5843d-016d-4e3b-b7f7-3b96cb71ed89" />
 
 An end-to-end data engineering project designed to monitor urban traffic in real-time. This platform leverages the **PostgreSQL ecosystem** to handle massive time-series datasets and geospatial movements, optimized for performance and scalability.
 
 ---
 
-## 📊 Live Dashboard Preview
+ Live Dashboard Preview
 This dashboard provides real-time visibility into traffic movement and safety violations.
 
 ![Main Grafana Dashboard Screenshot](<img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/1cffad5e-d53a-4ff7-8231-d8c0b525700c" />
@@ -14,7 +16,7 @@ This dashboard provides real-time visibility into traffic movement and safety vi
 
 ---
 
-## 🌟 Key Highlights (Alignment with Tiger Data/Timescale)
+##  Key Highlights (Alignment with Tiger Data/Timescale)
 - **Time-Series Optimization:** Utilized **TimescaleDB Hypertables** for efficient storage and querying of millions of vehicle logs.
 - **Geospatial Intelligence:** Integrated **PostGIS** for location-based tracking (using Latitude/Longitude) and mapping.
 - **Real-time Monitoring & Alerting:** Built automated **Alerting Systems** in Grafana for overspeed detection (>60 km/h).
@@ -22,7 +24,7 @@ This dashboard provides real-time visibility into traffic movement and safety vi
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 | Component | Technology |
 | :--- | :--- |
 | **Database** | PostgreSQL + TimescaleDB |
@@ -33,7 +35,7 @@ This dashboard provides real-time visibility into traffic movement and safety vi
 
 ---
 
-## 🚦 Dashboard Features (In Detail)
+##  Dashboard Features (In Detail)
 
 ### 1. Geo-Mapping (PostGIS Integration)
 The Geomap panel displays live vehicle locations.
@@ -42,8 +44,8 @@ The Geomap panel displays live vehicle locations.
 
 * Uses **PostGIS** spatial coordinates for precise mapping.
 * Implemented clear color-coding (Layer legend):
-    * 🟢 `< 60 km/h` (Normal speed)
-    * 🔴 `60+ km/h` (Overspeed violation)
+    *  `< 60 km/h` (Normal speed)
+    *  `60+ km/h` (Overspeed violation)
 
 ### 2. Time-Series Analysis & Alerting
 The 'Speed vs Time' graph and the 'Overspeed Details' table work together.
@@ -53,7 +55,7 @@ The 'Speed vs Time' graph and the 'Overspeed Details' table work together.
 
 ---
 
-## 📈 Database Schema & Optimization
+##  Database Schema & Optimization
 
 ```sql
 -- Creating table for vehicle logs
@@ -74,7 +76,7 @@ Partitioning: Converted the table into a TimescaleDB Hypertable for lightning-fa
 
 Query Focus: Used CTEs and Window functions to calculate average speeds and detect bottlenecks efficiently.
 
-💡 What I Learned (Relevant to Tiger Data Role)
+ What I Learned (Relevant to Tiger Data Role)
 Database Support: Troubleshooting query performance issues on large datasets.
 
 TimescaleDB/PostgreSQL: Direct work with hypertables, indexing, and understanding performance bottlenecks.
