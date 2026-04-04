@@ -1,16 +1,14 @@
 Smart City Traffic & Mobility Analytics Platform
+---
+ Live Dashboard Preview
+This dashboard provides real-time visibility into traffic movement and safety violations.
 
 <img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/2be5843d-016d-4e3b-b7f7-3b96cb71ed89" />
 
 An end-to-end data engineering project designed to monitor urban traffic in real-time. This platform leverages the **PostgreSQL ecosystem** to handle massive time-series datasets and geospatial movements, optimized for performance and scalability.
 
----
 
- Live Dashboard Preview
-This dashboard provides real-time visibility into traffic movement and safety violations.
 
-(<img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/1cffad5e-d53a-4ff7-8231-d8c0b525700c" />
-)
 
 *The screenshot shows a comprehensive traffic monitoring panel, including live overspeed counts, a geospatial map, vehicle speed over time, and a detailed list of overspeed violations.*
 
