@@ -9,7 +9,7 @@ An end-to-end data engineering project designed to monitor urban traffic in real
  Live Dashboard Preview
 This dashboard provides real-time visibility into traffic movement and safety violations.
 
-![Main Grafana Dashboard Screenshot](<img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/1cffad5e-d53a-4ff7-8231-d8c0b525700c" />
+(<img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/1cffad5e-d53a-4ff7-8231-d8c0b525700c" />
 )
 
 *The screenshot shows a comprehensive traffic monitoring panel, including live overspeed counts, a geospatial map, vehicle speed over time, and a detailed list of overspeed violations.*
@@ -47,7 +47,7 @@ The Geomap panel displays live vehicle locations.
     *  `< 60 km/h` (Normal speed)
     *  `60+ km/h` (Overspeed violation)
 
-### 2. Time-Series Analysis & Alerting
+### 2. Time-Series Analysis & Alerting 
 The 'Speed vs Time' graph and the 'Overspeed Details' table work together.
 * **Time Series Graph:** Displays a specific vehicle's speed over the last 5 minutes.
 * **Detailed Overspeed Table:** Shows a log of violations including timestamp, vehicle ID, speed (highlighted in red for speed >60 km/h), and driver ID.
