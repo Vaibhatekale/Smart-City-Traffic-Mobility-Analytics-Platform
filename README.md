@@ -5,78 +5,151 @@ This dashboard provides real-time visibility into traffic movement and safety vi
 
 <img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/2be5843d-016d-4e3b-b7f7-3b96cb71ed89" />
 
-An end-to-end data engineering project designed to monitor urban traffic in real-time. This platform leverages the **PostgreSQL ecosystem** to handle massive time-series datasets and geospatial movements, optimized for performance and scalability.
+# Smart City Traffic & Mobility Analytics Platform
 
+A real-time traffic and mobility analytics platform built using PostgreSQL, TimescaleDB, and PostGIS to simulate, store, analyze, and visualize vehicle telemetry data at scale.
 
+## Overview
 
+This project is designed to demonstrate practical database engineering skills for time-series and geospatial workloads. It simulates live vehicle data, stores it in PostgreSQL/TimescaleDB, performs traffic analytics using SQL and PostGIS, and supports performance analysis with indexing and execution-plan inspection.
 
-*The screenshot shows a comprehensive traffic monitoring panel, including live overspeed counts, a geospatial map, vehicle speed over time, and a detailed list of overspeed violations.*
+The system focuses on:
 
----
+- real-time vehicle telemetry ingestion  
+- time-series analytics using TimescaleDB  
+- spatial analytics using PostGIS  
+- query optimization using indexes and `EXPLAIN ANALYZE`  
+- dashboard-friendly query outputs for visualization tools like Grafana  
 
-##  Key Highlights (Alignment with Tiger Data/Timescale)
-- **Time-Series Optimization:** Utilized **TimescaleDB Hypertables** for efficient storage and querying of millions of vehicle logs.
-- **Geospatial Intelligence:** Integrated **PostGIS** for location-based tracking (using Latitude/Longitude) and mapping.
-- **Real-time Monitoring & Alerting:** Built automated **Alerting Systems** in Grafana for overspeed detection (>60 km/h).
-- **Performance Tuning:** Focused on SQL optimization, indexing strategies, and analyzing execution plans for complex analytical queries.
+## Tech Stack
 
----
+- PostgreSQL
+- TimescaleDB
+- PostGIS
+- Python
+- psycopg2
+- Grafana
 
-##  Tech Stack
-| Component | Technology |
-| :--- | :--- |
-| **Database** | PostgreSQL + TimescaleDB |
-| **Geospatial** | PostGIS |
-| **Data Generation** | Python (Faker / Custom Scripts) |
-| **Visualization** | Grafana |
-| **Orchestration** | SQL CTEs, Window Functions, PL/pgSQL |
+## Project Structure
 
----
+```text
+sql/
+  schema.sql
+  queries.sql
 
-##  Dashboard Features (In Detail)
+data_ingestion/
+  generator.py
 
-### 1. Geo-Mapping (PostGIS Integration)
-The Geomap panel displays live vehicle locations.
-![Geomap Panel](Smart_City_Map.png)
-*(Replace this placeholder with a direct screenshot of just the map panel for a closer look)*
+Core Features
+Real-Time Data Ingestion
 
-* Uses **PostGIS** spatial coordinates for precise mapping.
-* Implemented clear color-coding (Layer legend):
-    *  `< 60 km/h` (Normal speed)
-    *  `60+ km/h` (Overspeed violation)
+A Python-based generator simulates live traffic data for multiple vehicles and inserts records into PostgreSQL in batches.
 
-### 2. Time-Series Analysis & Alerting 
-The 'Speed vs Time' graph and the 'Overspeed Details' table work together.
-* **Time Series Graph:** Displays a specific vehicle's speed over the last 5 minutes.
-* **Detailed Overspeed Table:** Shows a log of violations including timestamp, vehicle ID, speed (highlighted in red for speed >60 km/h), and driver ID.
-* An automatic **Grafana Alert** is triggered whenever a speed data point exceeds the limit.
+Generated fields include:
 
----
+vehicle_id
+timestamp
+latitude
+longitude
+speed
+route_id
+vehicle_type
+driver_id
+status
+fuel_level
+engine_temp
+Time-Series Data Management
 
-##  Database Schema & Optimization
+Vehicle telemetry is stored in TimescaleDB for efficient handling of time-based data. The schema supports time-oriented querying and aggregation for traffic analysis.
 
-```sql
--- Creating table for vehicle logs
-CREATE TABLE vehicle_logs (
-    timestamp TIMESTAMPTZ NOT NULL,
-    vehicle_id TEXT NOT NULL,
-    driver_id TEXT NOT NULL,
-    vehicle_type TEXT,
-    speed DOUBLE PRECISION,
-    latitude DOUBLE PRECISION,
-    longitude DOUBLE PRECISION
-);
+Geospatial Analytics
 
--- Example of creating a hypertable for performance
-SELECT create_hypertable('vehicle_logs', 'timestamp');
+PostGIS is used to enrich vehicle logs with spatial points derived from latitude and longitude. This enables hotspot detection and location-based traffic analysis.
 
-Partitioning: Converted the table into a TimescaleDB Hypertable for lightning-fast historical queries.
+Query Optimization
 
-Query Focus: Used CTEs and Window functions to calculate average speeds and detect bottlenecks efficiently.
+The project includes indexed queries, spatial indexing, and EXPLAIN ANALYZE to demonstrate practical SQL performance analysis.
 
- What I Learned (Relevant to Tiger Data Role)
-Database Support: Troubleshooting query performance issues on large datasets.
+Database Design Highlights
+vehicle_logs stores vehicle telemetry data
+PostGIS geom column is used for geospatial analysis
+GIST spatial index improves spatial query performance
+TimescaleDB functions such as time_bucket() support time-based analytics
+Key SQL Use Cases
 
-TimescaleDB/PostgreSQL: Direct work with hypertables, indexing, and understanding performance bottlenecks.
+The project includes queries for:
 
-Full Stack Exposure: Debugging data issues across the stack—from Python data generation to Grafana visualization.
+latest vehicle activity
+average speed by vehicle
+peak speed analysis
+fuel monitoring
+congestion hotspot detection
+hourly traffic trends
+execution-plan analysis using EXPLAIN ANALYZE
+Example Analytics
+Congestion Hotspot Detection
+
+Vehicle positions are snapped to a grid using ST_SnapToGrid() to identify high-density traffic zones.
+
+Hourly Traffic Trend
+
+time_bucket('1 hour', timestamp) is used to group traffic data into hourly windows for trend analysis.
+
+Performance Inspection
+
+Selected analytical queries are tested with EXPLAIN ANALYZE and optimized using indexes.
+
+How to Run
+1. Set up PostgreSQL with Extensions
+
+Enable required extensions:
+
+CREATE EXTENSION IF NOT EXISTS timescaledb;
+CREATE EXTENSION IF NOT EXISTS postgis;
+2. Create Schema
+
+Run:
+
+sql/schema.sql
+3. Run Queries
+
+Use:
+
+sql/queries.sql
+4. Start Data Generator
+
+Run:
+
+python data_ingestion/generator.py
+
+Before running, update your database connection values inside generator.py.
+
+Screenshots
+
+Add your screenshots here after upload:
+
+Grafana Dashboard
+
+Explain Analyze Output
+
+Congestion Hotspot Query Result
+
+What This Project Demonstrates
+
+This project demonstrates:
+
+practical PostgreSQL usage
+TimescaleDB-based time-series handling
+PostGIS-based spatial querying
+real-time batch ingestion with Python
+SQL analytics for mobility data
+indexing and execution-plan based query optimization
+Resume-Friendly Summary
+
+Built a real-time traffic and mobility analytics platform using PostgreSQL, TimescaleDB, PostGIS, and Python. Simulated vehicle telemetry ingestion, implemented geospatial hotspot analysis, and optimized analytical queries using indexes and execution-plan analysis.
+
+Future Improvements
+live API layer using FastAPI
+Docker-based local deployment
+alerting for overspeed or congestion spikes
+dashboard export integration with Grafana
