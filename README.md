@@ -1,11 +1,8 @@
 Smart City Traffic & Mobility Analytics Platform
 ---
- Live Dashboard Preview
-This dashboard provides real-time visibility into traffic movement and safety violations.
+A real-time traffic analytics platform handling time-series and geospatial data with optimized SQL queries and execution-plan based performance tuning.
 
 <img width="1920" height="1080" alt="grafana" src="https://github.com/user-attachments/assets/2be5843d-016d-4e3b-b7f7-3b96cb71ed89" />
-
-# Smart City Traffic & Mobility Analytics Platform
 
 A real-time traffic and mobility analytics platform built using PostgreSQL, TimescaleDB, and PostGIS to simulate, store, analyze, and visualize vehicle telemetry data at scale.
 
@@ -58,6 +55,7 @@ driver_id
 status
 fuel_level
 engine_temp
+
 Time-Series Data Management
 
 Vehicle telemetry is stored in TimescaleDB for efficient handling of time-based data. The schema supports time-oriented querying and aggregation for traffic analysis.
@@ -103,30 +101,25 @@ How to Run
 1. Set up PostgreSQL with Extensions
 
 Enable required extensions:
-
 CREATE EXTENSION IF NOT EXISTS timescaledb;
 CREATE EXTENSION IF NOT EXISTS postgis;
-2. Create Schema
+
+Create Schema
 
 Run:
-
 sql/schema.sql
-3. Run Queries
+
+Run Queries
 
 Use:
-
 sql/queries.sql
-4. Start Data Generator
+
+Start Data Generator
 
 Run:
-
 python data_ingestion/generator.py
 
 Before running, update your database connection values inside generator.py.
-
-Screenshots
-
-Add your screenshots here after upload:
 
 Grafana Dashboard
 
@@ -153,3 +146,19 @@ live API layer using FastAPI
 Docker-based local deployment
 alerting for overspeed or congestion spikes
 dashboard export integration with Grafana
+
+
+## Key Achievements
+
+- Optimized analytical query latency using indexing and execution plan analysis
+- Implemented geospatial hotspot detection using PostGIS grid-based aggregation
+- Simulated real-time ingestion of large-scale vehicle telemetry data using batch inserts
+- Built time-series analytics using TimescaleDB hypertables and time_bucket()
+
+
+
+
+
+
+
+
